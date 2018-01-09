@@ -1,2 +1,2 @@
 # kaggle-ing
-sharpening skills on kaggle's data
+sharpening skills with kaggle's data
