@@ -3,7 +3,7 @@
 #                                                                            #
 #                           Decision Tree Model                              #
 #                                                                            #
-#       Simple reproduction of this tutorial as a means of practice          #
+#       Simply reproduction this tutorial as a means of practice             #
 # http://trevorstephens.com/kaggle-titanic-tutorial/getting-started-with-r   #
 ##############################################################################
 
@@ -14,10 +14,10 @@ test <- read.csv("~/dev/kaggle/titanic/test.csv", stringsAsFactors=FALSE)
 # If you're having trouble installing rattle (on a mac) due to RGtk issues, then follow this blog:
 # https://gist.github.com/zhiyzuo/a489ffdcc5da87f28f8589a55aa206dd
 
-install.packages('rpart')
-install.packages("https://togaware.com/access/rattle_5.0.14.tar.gz", repos=NULL, type="source")
-install.packages('rpart.plot')
-install.packages('RColorBrewer')
+#install.packages('rpart')
+#install.packages("https://togaware.com/access/rattle_5.0.14.tar.gz", repos=NULL, type="source")
+#install.packages('rpart.plot')
+#install.packages('RColorBrewer')
 library(rpart)
 library(rattle)
 library(rpart.plot)
@@ -48,7 +48,8 @@ train$Child[train$AgeCat == '<18'] <- '1'
 
 fit <- rpart(Survived ~ Pclass + Sex + Age + SibSp + Parch + Fare + Embarked,
              data=train,
-             method='class')
+             method='class',
+             control = rpart.control(minsplit = 8, xval=10))
 
 # Make sure that the RStudio Viewer is big enough so that this command works
 fancyRpartPlot(fit)
